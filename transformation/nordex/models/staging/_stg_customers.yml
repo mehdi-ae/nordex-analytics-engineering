@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: stg_customers
+    description: "Customers nettoyés et typés depuis raw.customers, avec flags de conformité au contrat."
+    columns:
+      - name: customer_id
+        description: "Identifiant unique du client."
+        tests:
+          - unique
+          - not_null
+      - name: region
+        description: "Région du client (8 valeurs autorisées)."
+        tests:
+          - accepted_values:
+              arguments: 
+                values: ['Auvergne-Rhone-Alpes', 'Bretagne', 'Grand-Est', 'Hauts-de-France', 'Ile-de-France', 'Normandie', 'Nouvelle-Aquitaine', 'Occitanie']
