@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: stg_carriers
+    description: "Transporteurs nettoyés des espaces"
+    columns:
+      - name: carrier_id
+        description: "Identifiant unique des transporteurs."
+        tests:
+          - unique
+          - not_null
+      - name: carrier_name
+        description: "Nom du transporteur."
+        tests:
+          - not_null
+      - name: service_level
+        description: "Qualité du service du transporteur."
+        tests:
+          - not_null
+          - accepted_values:
+              arguments: 
+                values: ['EXPRESS', 'STANDARD', 'ECONOMY']
