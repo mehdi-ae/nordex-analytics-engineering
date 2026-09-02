@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: stg_products
+    description: "Produits nettoyés et typés depuis raw.products, avec flags de conformité au contrat."
+    columns:
+      - name: sku
+        description: "Identifiant unique du produit."
+        tests:
+          - unique
+          - not_null
+      - name: category
+        description: "Catégorie produit (8 valeurs autorisées)."
+        tests:
+          - accepted_values:
+              values: ['Electronics', 'Home', 'Apparel', 'Beauty', 'Sports', 'Toys', 'Books', 'Grocery']
