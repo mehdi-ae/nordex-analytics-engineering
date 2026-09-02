@@ -1,0 +1,17 @@
+.venv/
+data_generation/data/
+__pycache__/
+*.pyc
+transformation/nordex/target/
+transformation/nordex/logs/
+dbt_packages/
+dbt.log
+data_generation/data/INJECTED_ISSUES.md
+data_generation/injected_issues/
+
+
+# secrets — jamais sur un repo public
+*.json
+.env
+credentials*.json
+profiles.yml

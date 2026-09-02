@@ -1,0 +1,18 @@
+version: 2
+
+sources: 
+  - name: raw
+    database: ae-supply-mehdi
+    schema: raw
+    tables: 
+      - name: carriers
+      - name: customers
+      - name: finance_ledger
+      - name: fulfillments
+      - name: inbound_receipts 
+      - name: inventory_snapshots
+      - name: order_lines
+      - name: orders
+      - name: products
+      - name: shipments
+      - name: sites
