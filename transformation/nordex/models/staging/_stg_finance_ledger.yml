@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: stg_finance_ledger
+    description: "Cleaning de la table finance ledger"
+    columns:
+      - name: order_ref
+        description: "Identifiant unique des commandes"
+        tests:
+          - unique
+          - not_null
+      - name: revenue_date
+        description: "Date de l'enregistrement du revenu de la commande "
+        tests:
+          - not_null
