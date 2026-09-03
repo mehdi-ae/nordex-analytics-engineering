@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: stg_fulfillments
+    description: "Table des opérations pour satisfaire les besoins client"
+    columns:
+      - name: fulfillment_id
+        description: "Identifiant unique des opérations exécutées"
+        tests:
+          - unique
+          - not_null
+      - name: order_id
+        description: "Le numéro de commande lié à la commande client"
+        tests:
+          - not_null
+      - name: sku
+        description: "L'article préparé"
+        tests:
+          - not_null
+      - name: site_id
+        description: "Site auquel la commande est assignée"
+        tests: 
+          - not_null
+      - name: quantity_fulfilled 
+        description: "Quantity de SKUs préparés"
+        tests: 
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 1
+          - not_null
