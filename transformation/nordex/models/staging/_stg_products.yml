@@ -13,4 +13,5 @@ models:
         description: "Catégorie produit (8 valeurs autorisées)."
         tests:
           - accepted_values:
-              values: ['Electronics', 'Home', 'Apparel', 'Beauty', 'Sports', 'Toys', 'Books', 'Grocery']
+              arguments:
+                values: ['Electronics', 'Home', 'Apparel', 'Beauty', 'Sports', 'Toys', 'Books', 'Grocery']

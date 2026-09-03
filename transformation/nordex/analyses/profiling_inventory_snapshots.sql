@@ -31,3 +31,9 @@ SELECT
     COUNTIF(SAFE_CAST(snapshot_date AS date) IS NULL) AS non_iso_dates
 FROM 
 {{source('raw', 'inventory_snapshots')}};
+
+
+----- check  post dbt run -----
+
+select count(*) as total 
+from {{ref('stg_inventory_snapshots')}};
