@@ -1,0 +1,30 @@
+version: 2
+
+models: 
+    - name: stg_inbound_receipts
+      description: "Suivi de la récéption de la marchandise"
+      columns: 
+        - name: receipt_id
+          description: "Identifiant unique de la récéption"
+          tests: 
+            - not_null
+            - unique
+        - name: sku
+          description: "Identifiant de l'article récéptionné"
+          tests: 
+            - not_null 
+        - name: site_id
+          description: 'Site où le receipt_id a été récéptionné'
+          tests: 
+            - not_null
+        - name: quantity_received
+          description: 'Quantité récéptionné du SKU'
+          tests: 
+            - not_null
+            - dbt_utils.accepted_range: 
+                arguments:
+                  min_value : 1
+        - name: receipt_date
+          description : "Date de la récéption"
+          tests: 
+            - not_null

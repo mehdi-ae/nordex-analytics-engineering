@@ -1,0 +1,24 @@
+version: 2
+
+models: 
+  - name: stg_order_lines
+    description: 'Détails des commandes et le prix par ligne'
+    tests: 
+      - dbt_utils.unique_combination_of_columns:
+          arguments:
+            combination_of_columns:
+              - order_id
+              - line_no
+    columns: 
+      - name: order_id
+        description: "identifiant unique de la commande"
+        tests: 
+          - not_null
+      - name: line_no
+        description: 'ligne de la commande'
+        tests: 
+          - not_null 
+      - name: sku
+        description: 'article de la commande'
+        tests: 
+          - not_null 

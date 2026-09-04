@@ -1,0 +1,29 @@
+version: 2 
+
+models: 
+  - name: stg_orders 
+    description: "Tables des commandes clients"
+    columns: 
+      - name: order_id
+        description: 'Identifiant unique de la commande'
+        tests: 
+          - not_null
+          - unique
+      - name: customer_id
+        description: 'identifiant du client qui a passé la commande'
+        tests: 
+          - not_null 
+      - name: order_ts
+        description: 'Temps et date de la passation de la commande'
+        tests: 
+          - not_null 
+      - name: order_date
+        description: 'Date de la passation de la commande'
+        tests : 
+          - not_null 
+      - name: status
+        description: 'Statut de la commande'
+        tests: 
+            - accepted_values: 
+                arguments: 
+                  values: ['PLACED']

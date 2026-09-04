@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: stg_sites
+    description: "Sites nettoyés"
+    columns:
+      - name: site_id
+        description: "Identifiant unique du site."
+        tests:
+          - unique
+          - not_null
+      - name: city
+        description: "Ville du site."
+        tests:
+          - not_null
+      - name: region
+        description: "Région du site."
+        tests:
+          - not_null
+      - name: storage_capacity_units
+        description: "Capacité de stockage du site"
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              arguments:
+                min_value: 1
