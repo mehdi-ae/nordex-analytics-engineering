@@ -29,3 +29,9 @@ select
     countif(ship_to_region is null) as null_regions 
 from {{source('raw', 'orders')}}
 ;
+
+
+select 
+    count(*) as total, 
+    countif(is_region_missing) as nb_region_missing 
+from {{ref('stg_orders')}};

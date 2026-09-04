@@ -1,0 +1,45 @@
+version: 2
+
+models:
+  - name: stg_shipments
+    description: 'Détails des shipments et leur status de livraison'
+    columns: 
+      - name: shipment_id
+        description: 'Identifiant unique du shipment'
+        tests: 
+          - not_null
+          - unique
+      - name: order_id
+        description: 'Commande lié au shipment'
+        tests: 
+          - not_null 
+      - name: origin_site
+        description: 'Site qui envoie les shipments'
+        tests: 
+          - not_null 
+      - name: carrier_name
+        description: 'transporteur qui prend en charge la livraison'
+        tests: 
+          - not_null
+      - name: ship_date
+        description: "date de l'expédition de la commande"
+        tests: 
+          - not_null 
+      - name: promised_delivery_date
+        description: 'Date prévue de livraison, communiquée au client'
+        tests: 
+          - not_null
+      - name: weight_grams
+        description: 'Poids de la commande'
+        tests: 
+          - not_null 
+      - name: freight_cost_eur
+        description: 'Cout du transport'
+        tests: 
+          - not_null
+      - name: status
+        description: 'Statut de la livraison'
+        tests: 
+            - accepted_values: 
+                arguments: 
+                  values : ['DELIVERED', 'IN_TRANSIT']
