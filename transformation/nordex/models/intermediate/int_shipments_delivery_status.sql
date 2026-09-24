@@ -16,7 +16,7 @@ delivery_status as (
         freight_cost_eur, 
         status,
         case 
-            when status = 'DELIVERED' and actual_delivery_date is null then 'to investigate'
+            when status = 'DELIVERED' and actual_delivery_date is null then 'to_investigate'
             when status = 'DELIVERED' and actual_delivery_date <= promised_delivery_date then 'on_time'
             when status = 'DELIVERED' and actual_delivery_date > promised_delivery_date then 'late'
             when status = 'IN_TRANSIT' then 'in_transit'
