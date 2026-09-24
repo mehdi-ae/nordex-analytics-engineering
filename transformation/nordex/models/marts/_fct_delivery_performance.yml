@@ -1,0 +1,25 @@
+version: 2
+
+models : 
+  - name: fct_delivery_performance
+    description: "Table de performance de livraison"
+    columns:
+      - name: shipment_id
+        description: "Identifiant unique des commandes"
+        tests:
+          - unique
+          - not_null
+      - name: delivery_status
+        description: "Les status possibles de livraison de la commande"
+        tests: 
+          - accepted_values:
+              arguments:
+                values: ['on_time', 'in_transit', 'late', 'to_investigate']
+      - name : carrier_name
+        description: "Nom du transporteur"
+        tests:
+          - not_null
+      - name: origin_site
+        description: "Site d'origine de la commande"
+        tests:
+          - not_null
