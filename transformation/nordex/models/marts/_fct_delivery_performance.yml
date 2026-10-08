@@ -1,25 +1,39 @@
 version: 2
 
-models : 
+models:
   - name: fct_delivery_performance
     description: "Table de performance de livraison"
     columns:
       - name: shipment_id
-        description: "Identifiant unique des commandes"
+        description: "Identifiant unique de l'expédition"
         tests:
           - unique
           - not_null
       - name: delivery_status
-        description: "Les status possibles de livraison de la commande"
-        tests: 
+        description: "Statut de livraison de l'expédition"
+        tests:
           - accepted_values:
               arguments:
                 values: ['on_time', 'in_transit', 'late', 'to_investigate']
-      - name : carrier_name
-        description: "Nom du transporteur"
+      - name: carrier_id
+        description: "Identifiant du transporteur"
+        tests:
+          - relationships:
+              arguments:
+                to: ref('dim_carrier')
+                field: carrier_id
+      - name: origin_site_id
+        description: "Site d'origine de l'expédition"
         tests:
           - not_null
-      - name: origin_site
-        description: "Site d'origine de la commande"
+          - relationships:
+              arguments:
+                to: ref('dim_site')
+                field: site_id
+      - name: ship_date
+        description: "Date d'expédition"
         tests:
-          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_date')
+                field: date_day

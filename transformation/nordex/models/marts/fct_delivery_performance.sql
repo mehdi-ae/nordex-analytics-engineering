@@ -1,29 +1,29 @@
 with source as (
+
     select *
     from {{ ref('int_shipments_delivery_status') }}
-), 
-fct_delivery_performance as (
-    select 
-        shipment_id, 
-        order_id, 
-        carrier_name, 
-        origin_site, 
-        dest_region, 
-        ship_date, 
-        date_trunc(ship_date, week) as ship_week,
-        date_trunc(ship_date, month) as ship_month,
-        delivery_status,
-        case when delivery_status = 'on_time' then 1 else 0 end as is_on_time,
-        case when delivery_status = 'late' then 1 else 0 end as is_late,
-        case when delivery_status in ('on_time', 'late') then 1 else 0 end as is_measurable_delivery,
-        case when delivery_status = 'in_transit' then 1 else 0 end as is_in_transit,
-        case when delivery_status = 'to_investigate' then 1 else 0 end as is_to_investigate,
-        promised_delivery_date, 
-        actual_delivery_date, 
-        weight_grams, 
-        freight_cost_eur
-    from source
+
+),
+
+final as (
+
+    select
+        s.shipment_id,
+        s.order_id,
+        c.carrier_id,
+        s.origin_site as origin_site_id,
+        s.dest_region,
+        s.ship_date,
+        s.delivery_status,
+        s.promised_delivery_date,
+        s.actual_delivery_date,
+        date_diff(s.actual_delivery_date, s.promised_delivery_date, day) as delivery_delay_days,
+        s.weight_grams,
+        s.freight_cost_eur
+    from source s
+    left join {{ ref('dim_carrier') }} c on s.carrier_name = c.carrier_name
+
 )
 
 select *
-from fct_delivery_performance
+from final
