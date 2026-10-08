@@ -1,0 +1,11 @@
+version: 2
+
+models :
+  - name: dim_date
+    description: "dimension calendaire - une ligne par jour, généré via dbt_utils.date_spine"
+    columns:
+      - name: date_day 
+        description: "Clé dimension, gain = un jour"
+        tests:
+          - not_null
+          - unique
